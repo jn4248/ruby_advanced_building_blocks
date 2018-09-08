@@ -1,6 +1,6 @@
 module MyEnumerable
 
-  def MyEnumerable.my_each(array)
+  def self.my_each(array)
     for element in array
       if block_given?
         yield(element)
@@ -9,7 +9,7 @@ module MyEnumerable
     return block_given? ? array : array.to_enum(:my_each)
   end
 
-  def MyEnumerable.my_each_with_index(array)
+  def self.my_each_with_index(array)
     count = 0
     for element in array
       if block_given?
@@ -20,7 +20,7 @@ module MyEnumerable
     return block_given? ? array : array.to_enum(:my_each_with_index)
   end
 
-  def MyEnumerable.my_select(array)
+  def self.my_select(array)
     new_array = []
     for element in array
       if block_given?
@@ -34,7 +34,7 @@ module MyEnumerable
     return block_given? ? new_array : new_array.to_enum(:my_select)
   end
 
-  def MyEnumerable.my_all?(array)
+  def self.my_all?(array)
     all_items_match = true
     for element in array
       if block_given?
@@ -51,7 +51,7 @@ module MyEnumerable
     all_items_match
   end
 
-  def MyEnumerable.my_any?(array)
+  def self.my_any?(array)
     item_match = false
     for element in array
       if block_given?
@@ -69,7 +69,7 @@ module MyEnumerable
     item_match ? true : false
   end
 
-  def MyEnumerable.my_none?(array)
+  def self.my_none?(array)
     no_match = true
     for element in array
       if block_given?
@@ -85,7 +85,7 @@ module MyEnumerable
     no_match
   end
 
-  def MyEnumerable.my_count(array)
+  def self.my_count(array)
     count = 0
     for element in array
       # count the matches if block is given
@@ -102,7 +102,7 @@ module MyEnumerable
   end
 
   # version 1: Executes with or without a block (procs not addressed here)
-  def MyEnumerable.my_map(array)
+  def self.my_map(array)
     new_array = []
     for element in array
       if block_given?
@@ -113,7 +113,7 @@ module MyEnumerable
   end
 
   # version 2: requires a proc passed as a parameter.
-  def MyEnumerable.my_map_proc(array, proc)
+  def self.my_map_proc(array, proc)
     new_array = []
     for element in array
       new_array.push(proc.call element)
@@ -123,7 +123,7 @@ module MyEnumerable
 
   # version 3: accepts a proc, block, or neither.
   # If both a proc and block are given, the proc is used, and the block ignored
-  def MyEnumerable.my_map_proc_or_block(array, proc = nil)
+  def self.my_map_proc_or_block(array, proc = nil)
     new_array = []
     for element in array
       if proc != nil
@@ -144,7 +144,7 @@ module MyEnumerable
   # enumerator "inject" throws an exception if no block is passed.
   # Therefore, no clause is included here for such a case.
   # This version does not accept symbols to define the block method or operator
-  def MyEnumerable.my_inject(array, initial_value = nil)
+  def self.my_inject(array, initial_value = nil)
     # if initial_value not passed in, assign first element in collection
     memo = (initial_value == nil) ? array[0] : initial_value
     count = 0
@@ -159,7 +159,7 @@ module MyEnumerable
   end
 
   # extra method requested, using my_inject strictly to multiply all elements
-  def MyEnumerable.multiply_els(array)
+  def self.multiply_elements(array)
     my_inject(array, 1) {|product, element| product * element}
   end
 
