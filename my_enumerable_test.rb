@@ -337,9 +337,9 @@ p b.inject() {|joined, word| joined + " " + word}
 puts "=====================================================================\n\n "
 
 
-puts "Testing multiply_els()\n "
+puts "Testing multiply_elements()\n "
 puts "Expected: 40 (product of elements [2, 4, 5])"
-result = MyEnumerable.multiply_els([2, 4, 5])
+result = MyEnumerable.multiply_elements([2, 4, 5])
 puts "Result: " + result.to_s
 puts "=====================================================================\n\n "
 
